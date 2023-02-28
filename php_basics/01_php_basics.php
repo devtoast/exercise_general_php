@@ -294,7 +294,7 @@
     // Mit String
     if ($tag == "Tuesday") {
         echo "Heute ist Dienstag!";
-    } else if ($tag != "Tuesday") {
+    } elseif ($tag != "Tuesday") {
         echo "Heute ist nicht Dienstag!";
     } else {
         echo "Heute ist anscheined gar kein Tag ;)";
