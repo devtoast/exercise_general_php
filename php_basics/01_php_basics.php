@@ -85,6 +85,7 @@
     echo "<br>";
     ?>
 
+
     <br>
     <br>
 
@@ -110,6 +111,8 @@
 
     <br>
     <br>
+
+    /////////////////////////////////////
 
     <h3>ARRAYS – <mark>array</mark></h3>
     <h5 style="color: #DC143C;">1. Numerische Arrays – Index ist Zahl (Integer)</h5>
@@ -234,6 +237,9 @@
 
     <div class="underline" style="border-bottom: 1px solid #000"></div>
 
+
+    /////////////////////////////////////
+
     <br>
     <br>
     <h3>IF ELSE Anweisungen (Statements) – <mark>if / else if / else</mark></h3>
@@ -307,10 +313,322 @@
 
     <div class="underline" style="border-bottom: 1px solid #000"></div>
 
+
+    /////////////////////////////////////
+
     <br>
     <br>
     <h3>FUNKTIONEN<mark></mark></h3>
     <h5 style="color: #DC143C;">Funktionen für Strings</h5>
+
+    <?php
+
+    $text = "strtolower – String in Kleinbuchstaben";
+    echo strtolower($text);
+    echo "<br>";
+
+    $text2 = "mb_strtolower – (mb - Multi Byte) bei z.B. Umlauten – belegen 2 Speicherplätze";
+    echo mb_strtolower($text2);
+    echo "<br>";
+
+    echo "<br>";
+
+    $text3 = " trim – Leerzeichen vor und nach einem String entfernen  ";
+    echo trim($text3);
+    echo "<br>";
+
+    $text4 = " trim – Leerzeichen vor und nach einem String entfernen  ";
+    echo trim($text4, "tren ");
+    echo "<br>";
+    // trim stutzt Leerzeichen IMMER von außen nach innen (links UND rechts)
+    // "tren" t von links - ren von rechts - Leerzeichen von beiden Seiten
+
+    echo "<br>";
+
+    $text5 =
+        "pre – Text in einem HTML -pre- Element wird in einer Schriftart mit fester Breite angezeigt, 
+    und der Text behält sowohl Leerzeichen als auch Zeilenumbrüche bei. 
+    Der Text wird genau so angezeigt, wie er im HTML-Quellcode steht.";
+
+    //
+    echo "<pre>";
+    print_r($text5);
+    echo "</pre>";
+    //
+
+    /* <pre> Text in einem <pre>Element wird in einer Schriftart mit fester Breite angezeigt, 
+    und der Text behält sowohl Leerzeichen als auch Zeilenumbrüche bei. 
+    Der Text wird genau so angezeigt, wie er im HTML-Quellcode steht. */
+
+    /* Die Funktion print_r() druckt die Informationen über eine Variable in einer für Menschen besser lesbaren Weise. */
+
+    echo "<br>";
+
+    $text6 = "strip_tags – HTML-Tags aus einem String enfernen – <strong>fett</strong> und <em>kursiv</em>";
+    echo strip_tags($text6);
+    echo "<br>"; // 1. text6 wird erst nach echo br angezeigt??
+    echo strip_tags($text6, "<strong>");
+
+    //
+    echo "<pre>";
+    print_r($text6);
+    echo "</pre>";
+    //
+
+    echo "<br>";
+
+    $text7 = "strlen – Länge eines Strings zählen"; //39 = zu viel! Umlaute zählen doppelt!!
+    echo $text7;
+    echo "<br>";
+    echo strlen($text7);
+    echo "<br>";
+
+    $text8 = "mb_strleng – Länge eines Strings zählen"; // 39 = ok! Umlaute zählen nur noch einfach!! 
+    echo $text8;
+    echo "<br>";
+    echo mb_strlen($text8);
+    echo "<br>";
+
+    echo "<br>";
+
+    $text9 = "ß"; // 2 Speicherplätze!
+    echo $text9;
+    echo "<br>";
+    echo strlen($text9);
+    echo "<br>";
+
+    echo "<br>";
+
+
+    $text10 = "substr – Teil eines Strings extrahieren";
+    echo $text10;
+    echo "<br>";
+    echo substr($text10, 3, 10); // ACHTUNG Leerzeichen zählen auch doppelt!!!
+    echo "<br>";
+    echo mb_substr($text10, 3, 10); // Wieder mb_ (MultiByte) !!
+    echo "<br>";
+    // 3 mögliche Parameter 1. was ($text10)- 2. ab wann (start = 0!! (3)) - 3. wieviele Zeichen (10)
+
+    echo "<br>";
+
+    $text11 = "nl2br (new line to break) – Zeilenumbrüche in -br- umwandeln";
+    echo $text11;
+    echo "<br>";
+
+    echo "<br>";
+
+    $text12 = "Hier kommt ein Umbruch
+    und noch ein Umbruch
+    und ein Umbruch
+    geht noch.";
+    echo nl2br($text12);
+    echo "<br>";
+
+    // nl2br – Text wird wie im Code geschrieben dargestellt
+    ?>
+
+    <br>
+    <br>
+    <h5 style="color: #DC143C;">Funktionen für Arrays</h5>
+
+    <?php
+
+    $textArray1 = "count – Elemente (Werte) in einem Array zählen";
+
+    echo $textArray1;
+    echo "<br>";
+    $namen = array("Max", "Max", "Klausi", "Prisca", "Herbert", "Susi",);
+    echo "{$namen[0]} {$namen[1]} {$namen[2]} {$namen[3]} {$namen[4]} {$namen[5]}";
+    echo "<br>";
+    echo count($namen);
+    echo "<br>";
+
+    //
+    echo "<pre>";
+    print_r($namen);
+    echo "</pre>";
+    //
+    echo "<br>";
+
+    echo "<br>";
+
+    $textArray2 = "array_rand – Einzelnen Arrayinhalt zufällig ausgeben (INDEX 0, 1…)";
+
+    echo $textArray2;
+    echo "<br>";
+    echo array_rand($namen);
+    echo "<br>";
+    // Gibt die zufällige Arrayposition aus (0, 1…)
+
+    $randomArrayIndex = array_rand($namen); // Wert in Variable gespeichert
+    echo $namen[$randomArrayIndex];
+    echo "<br>";
+    // Gibt den zufällige Arrayinhalt aus (Klausi, Susi…)
+
+    echo "<br>";
+
+    $textArray3 = "array_unique – Doppelte Werte entfernen – ACHTUNG auf Index (gelöschter Wert fehlt)!";
+    echo $textArray3;
+    echo "<br>";
+
+    $eindeutig = array_unique($namen);
+    echo count($eindeutig); // 5 "eindeutige" Werte – einer wurde gelöscht (war doppelt vorhanden)
+    echo "<br>";
+
+    // ACHTUNG auf Index
+    echo "<pre>";
+    print_r($eindeutig);
+    echo "</pre>";
+    //
+    echo "<br>";
+
+
+    $textArray4 = "in_array – Prüfen ob ein Wert in einem Array existiert";
+    echo $textArray4;
+    echo "<br>";
+
+    echo ">" . in_array("Heidi", $namen) . "<"; // Heidi gibt`s nicht
+    echo "<br>";
+    echo in_array("Klausi", $namen); // Klausi ist 1x vorhanden – echo = 1
+    echo "<br>";
+
+    $i = in_array("Prisca", $namen);
+
+    if ($i) {
+        echo "Dieser Name existiert";
+    } else {
+        echo "DieserName existiert nicht!";
+    }
+    echo "<br>";
+
+    echo "<br>";
+
+    $textArray5 = "asort – Array aufsteigend alphabetisch nach Namen sortieren (A – Z)";
+    echo $textArray5;
+    echo "<br>";
+
+    asort($eindeutig);
+
+    //
+    echo "<pre>";
+    print_r($eindeutig);
+    echo "</pre>";
+    //
+    echo "<br>";
+
+    $textArray6 = "array_push – Wert im Nachhinein zu Array hinzufügen";
+    echo $textArray6;
+    echo "<br>";
+
+    array_push($eindeutig, "Lorenz", "Anna"); // Vorteil – Mehr als ein Wert möglich
+
+    // Auch möglich – aber nur einzelne Werte – $eindeutig[] = "Patrick";
+
+    //
+    echo "<pre>";
+    print_r($eindeutig);
+    echo "</pre>";
+    //
+
+    echo "<br>";
+
+    $textArray7 = "sort – Sortiern und Indizes neu zuweisen von A – Z UND numerisch von 0 – X";
+    echo $textArray7;
+    echo "<br>";
+
+    sort($eindeutig);
+
+    //
+    echo "<pre>";
+    print_r($eindeutig);
+    echo "</pre>";
+    //
+
+    echo "<br>";
+    ?>
+
+    <br>
+    <h5 style="color: #DC143C;">Eigenfunktionen</h5>
+
+    <?php
+
+    $efText1 = "Umrechnung von °C in °F – °F in °C";
+    echo $efText1;
+    echo "<br>";
+
+    // °F = °C * 1.8 + 32  – Achtung Komma mit Punkt schreiben
+    function celsiusToFarenheit($c)
+    {
+        $farenheit = $c * 1.8 + 32;
+        return $farenheit;
+    }
+    echo celsiusToFarenheit(35);
+    echo "<br>";
+
+    // °C = (°F - 32) * 5 / 9;
+    function farenheitToCelsius($f)
+    {
+        $celsius = ($f - 32) * 5 / 9;
+        return $celsius;
+    }
+    echo farenheitToCelsius(95);
+    echo "<br>";
+
+    echo "<br>";
+
+    $efText2 = "Datum neu formatieren";
+    echo $efText2;
+    echo "<br>";
+
+    $datum_mysql = "2022-04-17";
+    // Ausgabe soll sein 17.04.22
+
+    function formatDate($dateFalse)
+    {
+        $day = substr($dateFalse, 8, 2);
+        $month = substr($dateFalse, 5, 2);
+        $year = substr($dateFalse, 0, 4);
+        return "{$day}.{$month}.{$year}";
+    }
+    echo formatDate($datum_mysql);
+
+    echo "<br>";
+
+
+
+
+    function formatDate2($dateFalse2)
+    {
+        $dateFalse2 = "2022-04-17";
+        $date = array();
+        $date = array_push($date, $dateFalse2, "test");
+        return $date;
+        echo $date;
+    }
+
+    echo formatDate2($dateFalse2);
+
+    echo "<br>";
+    echo formatDate2($datum_mysql);
+    echo "<br>";
+
+
+    //
+    echo "<pre>";
+    print_r(formatDate2($datum_mysql));
+    echo "</pre>";
+    //
+
+
+
+
+
+
+
+
+    ?>
+
+
 
 
 
