@@ -596,7 +596,7 @@
 
 
 
-
+    /*
     function formatDate2($dateFalse2)
     {
         $dateFalse2 = "2022-04-17";
@@ -618,6 +618,7 @@
     print_r(formatDate2($datum_mysql));
     echo "</pre>";
     //
+    */
 
 
 
