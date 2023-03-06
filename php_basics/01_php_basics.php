@@ -112,7 +112,11 @@
     <br>
     <br>
 
-    /////////////////////////////////////
+
+
+    <!-- ARRAYS ///////////////////////////////////// -->
+
+
 
     <h3>ARRAYS – <mark>array</mark></h3>
     <h5 style="color: #DC143C;">1. Numerische Arrays – Index ist Zahl (Integer)</h5>
@@ -238,7 +242,10 @@
     <div class="underline" style="border-bottom: 1px solid #000"></div>
 
 
-    /////////////////////////////////////
+
+    <!-- KONTROLL Anweisungen IF ELSE ///////////////////////////////////// -->
+
+
 
     <br>
     <br>
@@ -314,7 +321,10 @@
     <div class="underline" style="border-bottom: 1px solid #000"></div>
 
 
-    /////////////////////////////////////
+
+    <!-- FUNKTIONEN ///////////////////////////////////// -->
+
+
 
     <br>
     <br>
@@ -576,7 +586,7 @@
 
     echo "<br>";
 
-    $efText2 = "Datum neu formatieren";
+    $efText2 = "substr - Datum neu formatieren";
     echo $efText2;
     echo "<br>";
 
@@ -593,32 +603,384 @@
     echo formatDate($datum_mysql);
 
     echo "<br>";
+    echo "<br>";
 
 
+    $efText3 = "explode - Datum neu formatieren";
+    echo $efText3;
+    echo "<br>";
 
-    /*
-    function formatDate2($dateFalse2)
+    function formatDate2($datum_falsch)
     {
-        $dateFalse2 = "2022-04-17";
-        $date = array();
-        $date = array_push($date, $dateFalse2, "test");
-        return $date;
-        echo $date;
+        $teile = explode("-", $datum_falsch);
+        return $teile[2] . "." . $teile[1] . "." . $teile[0];
+    }
+    echo formatDate2($datum_mysql);
+    //explode - Teilt einen String mithilfe eines Strings (Zeichens)
+    // Der explode-string der zum Teilen verwendet wird 
+    // ist in diesem Fall "-" der Bindestrich
+    // Werte werden in ein Array gespeichert
+
+    echo "<br>";
+
+    $datum_mysql = explode("-", $datum_mysql,);
+    // Werte werden in ein Array gespeichert
+    //
+    echo "<pre>";
+    print_r($datum_mysql);
+    echo "</pre>";
+    //
+
+    echo "<br>";
+
+    echo date("l.d.m.y");
+    // Mit date Funktion Datum ausgeben - (day.month.year)
+    echo "<br>";
+    echo date("Y.m.d");
+    // Mit date Funktion Datum ausgeben - (Year.month.day) Y gross = 4stellig
+    echo "<br>";
+    echo "<br>";
+
+    // Datum auf Deutsch
+    /*
+    $date = new DateTime('2013-02-25');
+    echo $date;
+
+    // Unser internationalisiertes Datum
+    $formatter = new IntlDateFormatter(
+        "de-DE",
+        IntlDateFormatter::LONG,
+        IntlDateFormatter::NONE,
+        "Europe/Berlin",
+        IntlDateFormatter::GREGORIAN,
+        "EEEE', der' dd. MMMM YYYY"
+    );
+    echo $formatter->format($date); // Montag, der 25. Februar 2013
+    */
+
+    echo "<br>";
+
+
+    $efText4 = "strlen - Text abschneiden und Wert anhängen";
+    echo $efText4;
+    echo "<br>";
+
+    $text = "1234567890abcde";
+    // Nach 10 Zeichen abschneiden und … anhängen
+
+    function textCutter($textTooLong)
+    {
+        $textLength = mb_strlen($textTooLong);
+        // Textlänge = MultByte_Stringlänge(Text aus Varible)
+        echo $textLength;
+        echo "<br>";
+
+        if ($textLength >= 10) {
+            return substr($textTooLong, 0, 10) . "…";
+        } else {
+            return $textTooLong;
+            // return "{$textTooLong}";
+            // return "$textTooLong";
+        }
+        // if Textlänge ist größer od. geich 10 
+        // gib die Positionen (von 0(Start oist 0!!) – 10) aus und hänge … an
     }
 
-    echo formatDate2($dateFalse2);
+    echo textCutter($text);
+
 
     echo "<br>";
-    echo formatDate2($datum_mysql);
+
+
+    // 2 Version: variabel einstellbare Textlänge mit zweitem Parameter
+    $text2 = "lskdjfalsdflksdjsdfhdfdfgsdfhg";
+    function textCutter2($textTooLong, $length = 5)
+    {
+        $textLength = mb_strlen($textTooLong);
+        // Textlänge = MultByte_Stringlänge(Text aus Varible)
+        echo $textLength;
+        echo "<br>";
+
+        if ($textLength > $length) {
+            return substr($textTooLong, 0, $length) . "…";
+        } else {
+            return $textTooLong;
+            // return "{$textTooLong}";
+            // return "$textTooLong";
+        }
+        // if Textlänge ist größer od. geich 10 
+        // gib die Positionen (von 0(Start oist 0!!) – 10) aus und hänge … an
+    }
+
+    echo textCutter2($text2, 20);
+
+    ?>
+
+
+    <br>
+    <br>
+
+    <div class="underline" style="border-bottom: 1px solid #000"></div>
+
+
+
+    <!-- SCHLEIFEN ///////////////////////////////////// -->
+
+
+
+    <br>
+    <br>
+    <h3>Schleifen – <mark>while / foreach / for</mark></h3>
+    <h5 style="color: #DC143C;"></h5>
+
+    <?php
+
+    // WHILE
+    $efText4 = nl2br("while - Durchläuft einen Codeblock,
+    solange die angegebene Bedingung wahr ist.
+    Es wird IMMER mindestens EIN Schleifendurchlauf ausgeführt!
+    Vorsicht Endlos-Schleife!! (set_time_limit()).");
+    echo $efText4;
     echo "<br>";
+    echo "<br>";
+
+    set_time_limit(1);
+    // limitiert Ausführungszeit auf 1 Sek. - Vorteil: Bricht bei Endlosschleife ab
+
+    $whileInt = 1;
+    while ($whileInt <= 10) {
+        echo $whileInt++ . " ";
+    };
+
+    echo "<br>";
+
+    $whileInt2 = 5;
+    while ($whileInt2 <= 10) {
+        echo $whileInt2++ . " ";
+    };
+    // Vorsicht vor Endlos-Schleifen! – set_time_limit(1);
+
+    echo "<br>";
+    echo "<br>";
+
+
+    // FOREACH
+    $efText5 = nl2br("foreach - Super für Arrays!
+    Die Arraywerte werden in eine seperate Variable gespeichert –
+    Indizes können auch mit durchlaufen werden
+    KANN NICHT ENDLOS SEIN!");
+    echo $efText5;
+    echo "<br>";
+    echo "<br>";
+
+    $farbenArr = array("Blau", "Grün", "Rot", "Cyan", "Magenta", "Yellow");
+    // Numerisches Array
+
+    //
+    echo "<pre>";
+    print_r($farbenArr);
+    echo "</pre>";
+    //
+
+    foreach ($farbenArr as $farbe) {
+        echo $farbe . " ";
+    }
+    echo "<br>";
+    echo "<br>";
+    foreach ($farbenArr as $index => $farbe) {
+        echo $index . " " . $farbe . " ";
+        // echo "{$index} {$farbe}";
+        echo "<br>";
+        echo "Die Arrayposition {$index} ist {$farbe}";
+        echo "<br>";
+    }
+
+
+    echo "<br>";
+    echo "<br>";
+
+
+    $toolArr = array(
+        "Hammer",
+        "Amboss",
+        "Schraubenzieher",
+        "Hammer",
+        "Schraubzwinge",
+        "Stemmeisen",
+        "Säge",
+        "Hobel"
+    );
+
+    //
+    echo "<pre>";
+    print_r($toolArr);
+    echo "</pre>";
+    //
+
+
+    // Tolle Array-Sortiermaschine
+    function arraySorter($arrayContent)
+    {
+        $arraySorted = array_unique($arrayContent);
+        asort($arraySorted);
+        sort($arraySorted);
+
+        return $arraySorted;
+    }
 
 
     //
     echo "<pre>";
-    print_r(formatDate2($datum_mysql));
+    print_r(arraySorter($toolArr));
     echo "</pre>";
     //
-    */
+
+
+    foreach (arraySorter($toolArr) as $tool) {
+        echo $tool;
+        echo "<br>";
+    }
+
+    echo "<br>";
+
+    foreach (arraySorter($toolArr) as $index => $tool) {
+        echo $index . " " . $tool;
+        echo "<br>";
+    }
+    // Tolle Array-Sortiermaschine END
+
+
+
+    echo "<br>";
+    echo "<br>";
+
+
+    // FOR SCHLEIFE
+    $efText6 = nl2br("for - Schleife
+    = vereinfachte Form von while-Schleifen –
+    for (1. \$index=1;  2. \$index <= 9;  3. \$index++)
+    1. Ausgangswert (Variable) = 1, 
+    2. Ausführungsbedingungen (solange Index = kleiner/gleich 9), 
+    3. was passiert (++ zählt eins rauf / -- zählt eins runter)");
+    echo $efText6;
+    echo "<br>";
+    echo "<br>";
+
+
+    // 1 – 10 in einer HTML Tabelle darstellen
+
+    echo "<table border='1'>";
+    echo "<tr>";
+    // tr außerhalb der Schleife Erzeugtnur NUR eine row !!!! - 
+    // = also nebeneinander!!
+    for ($row = 1; $row <= 10; $row++) {
+        echo "<td>";
+        // td innerhalb der Schleife Erzeugt bei jedem Durchlauf eine Wert von 1 – 10  
+        // NEBENEINANDER – tr ist ja außerhalb!!
+        echo $row;
+        echo "</td>";
+    }
+    echo "</tr>";
+    echo "</table>";
+
+    echo "<br>";
+
+
+
+
+    echo "<table border='1'>";
+    for ($row = 1; $row <= 10; $row++) {
+        echo "<tr>";
+        // tr innerhalb der Schleife Erzeugt bei jedem Durchlauf eine eigene row !!!! - 
+        // = also untereinander!!
+        echo "<td>";
+        // td innerhalb der Schleife Erzeugt bei jedem Durchlauf eine Wert von 1 – 10  
+        // UNTEREINANDER – tr ist ja innerhalb!!
+        echo $row;
+        echo "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+
+    echo "<br>";
+
+
+
+
+    echo "<table border='1'>";
+
+    for ($row = 1; $row <= 10; $row++) {
+        echo "<tr>";
+
+        for ($column = 1; $column <= 10; $column++) {
+            echo "<td>";
+            echo $row * $column;
+            echo "</td>";
+        }
+
+        echo "</tr>";
+    }
+
+    echo "</table>";
+
+    echo "<br>";
+
+
+
+
+    echo "<table style='border: solid 0px black; text-align: center;'>";
+
+    for ($row = 1; $row <= 10; $row++) {
+        echo "<tr>";
+
+        if ($row == 5 || $row == 6) continue;
+        // Überspringt Reihe 5 und 6 (row ist 5 ODER 6)
+        // bzw. führt Durchlauf 5 und 6 NICHT aus 
+        // sondern geht in den nächsten (übernächsten) Schleifendurchlauf also 7
+
+        for ($column = 1; $column <= 10; $column++) {
+            echo "<td style='border: solid 1px black; width: 30px; height: 30px;'>";
+            echo $row * $column;
+            echo "</td>";
+        }
+
+        echo "</tr>";
+    }
+
+    echo "</table>";
+
+    echo "<br>";
+
+
+
+
+    echo "<table style='border: solid 0px black; text-align: center;'>";
+
+    for ($row = 1; $row <= 10; $row++) {
+        echo "<tr>";
+
+        for ($column = 1; $column <= 10; $column++) {
+            echo "<td style='border: solid 1px black; width: 30px; height: 30px;'>";
+
+            if ($row * $column % 7 != 0) {
+                echo $row * $column;
+            }
+            // Entferne alle Zahlen wo bei einer Division / 7 mehr als Rest 0 bleibt
+            // Bzw. lass alles stehen wo Rest NICHT 0 ist
+            // Alle durch 7 teilbaren Zahlen verschwinden
+
+            echo "</td>";
+        }
+
+        echo "</tr>";
+    }
+
+    echo "</table>";
+
+    echo "<br>";
+
+
+
 
 
 
@@ -628,6 +990,42 @@
 
 
     ?>
+
+    <br>
+    <br>
+
+    <table border="1">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>6</td>
+            <td>9</td>
+            <td>...</td>
+        </tr>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
