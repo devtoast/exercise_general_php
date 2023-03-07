@@ -979,16 +979,6 @@
 
     echo "<br>";
 
-
-
-
-
-
-
-
-
-
-
     ?>
 
     <br>
@@ -1014,6 +1004,177 @@
             <td>...</td>
         </tr>
     </table>
+
+
+
+    <br>
+    <br>
+
+    <div class="underline" style="border-bottom: 1px solid #000"></div>
+
+
+
+    <!-- REGEX ///////////////////////////////////// -->
+
+
+
+    <br>
+    <br>
+    <h3>Reguläre Ausdrücke – Regular Expressions <mark>regex</mark></h3>
+    <h5 style="color: #DC143C;">regex = Zeichenfolge, die ein Suchmuster bildet. <br>
+        Kann ein einzelnes Zeichen oder ein komplizierteres Muster sein. <br>
+        z.B.: [A-Za-z] od. [A-Za-z0-9]+ usw.</h5>
+
+    <?php
+
+    // https://regex-generator.olafneumann.org
+
+    // https://cheatography.com/davechild/cheat-sheets/regular-expressions/
+
+
+    $efText7 = nl2br("preg_match - 2 Parameter
+    1. Parameter – wie wird geprüft
+    2. Parameter – was wird geprüft");
+    echo $efText7;
+    echo "<br>";
+    echo "<br>";
+
+    // preg_match 
+    // 1. Parameter (was/wie wird geprüft) - 2. Parameter was wird geprüft (welche Variable/Wert)
+    // ^ ...Start of string
+    // $ ... End of 
+
+    $benutzerName = "mustermann7"; //abc… 0–9
+    if (preg_match("/^[0-9a-z]+$/", $benutzerName)) {
+        echo "Benutzername ist korrekt";
+    } else {
+        echo "Benutzername ist nicht korrekt!";
+    }
+
+    echo "<br>";
+    echo "<br>";
+
+
+    //    function useRegex($input)
+    //  {
+    //    $regex = '/[A-Za-z0-9]+\\+-\\*/#\\?=\\)\\(/&%\\$§!/i';
+    //  return preg_match($regex, $input);
+    //  }
+
+
+    echo "<br>";
+    echo "<br>";
+
+
+    function randomPw()
+    {
+        $PwordSigns = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#?&%$§!';
+        $PwordSignsLength = strlen($PwordSigns) - 1; // Länge -1 in den Zwischenspeicher (eignetlich 70, nicht 69 / wg. Arrayzählung?)
+        $Pwords = array();
+
+        for ($PwordIndex = 0; $PwordIndex <= 9; $PwordIndex++) {
+            $PwordSingleSigns = rand(0, $PwordSignsLength);
+            // random Zeichen zwischen Pos 0 und Länge von $PwordSignsLength
+            // Wird in Array gespeicher - startet bei 0 - deswegen vorher -1?
+            $Pwords[] = $PwordSigns[$PwordSingleSigns];
+        }
+
+        return implode($Pwords);
+        // implode - Gibt Arraywerte als String aus
+
+    }
+
+    echo randomPw();
+    /*
+    //
+    echo "<pre>";
+    print_r(randomPw());
+    echo "</pre>";
+    //
+    */
+
+    echo "<br>";
+    echo "<br>";
+
+
+
+    function randomPwx10()
+    {
+        for ($i = 0; $i <= 9; $i++) {
+            echo randomPw();
+            echo "<br>";
+        }
+    }
+
+    echo randomPwx10();
+
+
+
+    echo "<br>";
+    echo "<br>";
+
+
+    $PwordSigns = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#?&%$§!';
+    echo $PwordSigns;
+    $PwLength = strlen($PwordSigns) - 1;
+    echo $PWLength;
+    //
+    echo "<pre>";
+    print_r($PwLength);
+    echo "</pre>";
+    //
+
+
+    echo "<br>";
+    echo "<br>";
+
+
+    echo "<br>";
+    $test = random_bytes(11);
+    echo $test;
+    echo "<br>";
+
+
+    $Pword = "maxi";
+    $Pwords = array();
+
+    array_push($Pwords, $Pword);
+    // echo $Pwords;
+    //
+    echo "<pre>";
+    print_r($Pwords);
+    echo "</pre>";
+    //
+
+
+    function randomPassword()
+    {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+
+    }
+
+    echo randomPassword();
+    // https://stackoverflow.com/questions/6101956/generating-a-random-password-in-php
+
+
+
+
+
+
+
+
+
+
+
+
+    ?>
 
 
 
