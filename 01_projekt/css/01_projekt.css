@@ -105,3 +105,12 @@ body {
     height: 5vh;
     background-color: var(--grey-medium);
 }
+
+
+.wrapper-formular {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vw;
+    margin: 5vw;
+}
