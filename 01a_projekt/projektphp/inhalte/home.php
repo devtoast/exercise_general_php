@@ -90,14 +90,50 @@
 
     echo "<br>";
 
-    //
-    echo "<pre>";
-    print_r($name);
-    echo "</pre>";
-    //
+
+
 
     ?>
 
+    <div class="wrapper-formular">
+
+        <form action="index.php?seite=home" method="post">
+
+            <label for="vorname">Vorname: </label>
+            <input type="text" id="name" name="vorname" value="">
+            <br>
+            <br>
+
+            <label for="nachname">Nachname: </label>
+            <input type="text" id="name" name="nachname" value="">
+            <br>
+            <br>
+
+            <label for="mail">Mail: </label>
+            <input type="text" id="mail" name="mail" value="">
+            <br>
+            <br>
+
+            <label for="password">Passwort: </label>
+            <input type="password" id="password" name="password" value="">
+            <br>
+            <br>
+
+            <label for="ok">OK: </label>
+            <input type="checkbox" id="ok" name="ok">
+            <br>
+            <br>
+
+
+            <input type="submit" value="Senden">
+            <input type="reset" value="Zurücksetzen">
+
+
+        </form>
+
+    </div>
+
+    <?php ?>
 
 
 

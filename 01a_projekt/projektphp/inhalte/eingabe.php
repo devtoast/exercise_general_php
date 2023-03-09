@@ -13,6 +13,9 @@
 
 
 
+
+
+
     <?php
 
     $vorname = htmlentities($_POST["vorname"]);
@@ -95,6 +98,7 @@
     print_r($name);
     echo "</pre>";
     //
+
 
     ?>
 
