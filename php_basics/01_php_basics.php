@@ -1134,6 +1134,19 @@
     echo $test;
     echo "<br>";
 
+    echo "<br>";
+
+    function randomPwx10_2()
+    {
+        for ($i = 0; $i <= 9; $i++) {
+            $randPW = random_bytes(11);
+            echo $randPW;
+            echo "<br>";
+        }
+    }
+
+    echo randomPwx10();
+
 
     $Pword = "maxi";
     $Pwords = array();
